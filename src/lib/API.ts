@@ -15,17 +15,17 @@ export class API {
 
   fetchAuthors() {
     return axios
-      .get<FetchResponse<Author>>(this.url("/authors"))
+      .get<FetchResponse<Author>>(this.url("/developers"))
       .then((res) => res.data.rows);
   }
 
   saveAuthor(author: Author) {
     if (author.id) {
-      axios.put(this.url(`/authors/${author.id}`), author).then((res) => {
+      axios.put(this.url(`/developers/${author.id}`), author).then((res) => {
         this.onReceiveAuthorUpdateCallbacks.forEach((cb) => cb(res.data));
       });
     } else {
-      axios.post(this.url("/authors"), author).then((res) => {
+      axios.post(this.url("/developers"), author).then((res) => {
         this.onReceiveAuthorUpdateCallbacks.forEach((cb) => cb(res.data));
       });
     }
