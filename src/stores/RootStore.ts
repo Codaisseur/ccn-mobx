@@ -13,6 +13,7 @@ export class RootStore {
   }
 }
 
-const transportLayer = new API();
+export const transportLayer = new API();
 const store = new RootStore(transportLayer);
 export const RootStoreContext = createContext<RootStore>(store);
+export default store;

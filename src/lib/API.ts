@@ -2,6 +2,11 @@ import axios from "axios";
 import { Author } from "./entities/Author";
 import { BlogPost } from "./entities/BlogPost";
 
+interface FetchResponse<Entity> {
+  count: number;
+  rows: Entity[];
+}
+
 export class API {
   onReceiveAuthorUpdateCallbacks: ((updatedAuthor: Author) => void)[] = [];
   onReceiveBlogPostUpdateCallbacks: ((
@@ -9,12 +14,14 @@ export class API {
   ) => void)[] = [];
 
   fetchAuthors() {
-    return axios.get<Author[]>(this.url("/authors")).then((res) => res.data);
+    return axios
+      .get<FetchResponse<Author>>(this.url("/authors"))
+      .then((res) => res.data.rows);
   }
 
   saveAuthor(author: Author) {
     if (author.id) {
-      axios.put(this.url(`/authors=${author.id}`), author).then((res) => {
+      axios.put(this.url(`/authors/${author.id}`), author).then((res) => {
         this.onReceiveAuthorUpdateCallbacks.forEach((cb) => cb(res.data));
       });
     } else {
@@ -25,7 +32,8 @@ export class API {
   }
 
   fetchBlogPosts() {
-    return axios.get<BlogPost[]>(this.url("/posts")).then((res) => res.data);
+    return axios.get<FetchResponse<BlogPost>>(this.url("/posts"))
+      .then((res) => res.data.rows);
   }
 
   saveBlogPost(post: BlogPost) {

@@ -37,6 +37,7 @@ export class BlogPostStore {
           fetchedBlogPosts.forEach((json) =>
             this.updateBlogPostFromServer(json)
           );
+          console.log(this.blogPosts);
           this.isLoading = false;
         });
       });
