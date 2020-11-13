@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Box } from "@material-ui/core";
-import HomeIcon from "@material-ui/icons/Home";
-import { Switch, Route, Link as RouterLink } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import HomePage from "./pages/home/HomePage";
 import SignupPage from "./pages/auth/SignupPage";
