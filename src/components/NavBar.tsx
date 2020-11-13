@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { AppBar, Toolbar, IconButton, Button } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import SunnyIcon from "@material-ui/icons/WbSunny";
+import NightsStayIcon from "@material-ui/icons/NightsStay";
 import { Link as RouterLink } from "react-router-dom";
 
 import { RootStoreContext } from "../stores/RootStore";
@@ -32,7 +33,7 @@ export default observer(() => {
           color="inherit"
           aria-label="menu"
         >
-          <SunnyIcon />
+          {uiStore.darkMode ? <SunnyIcon /> : <NightsStayIcon />}
         </IconButton>
         <div style={{ flexGrow: 1 }} />
         <div style={{ flexGrow: 1 }} />
