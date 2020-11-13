@@ -3,16 +3,17 @@ import {
   makeAutoObservable,
   runInAction,
 } from 'mobx';
+import { API } from '../lib/API';
 import { BlogPost } from '../lib/entities/BlogPost';
 import { RootStore } from './RootStore';
 
 export class BlogPostStore {
   rootStore!: RootStore;
-  transportLayer: any;
+  transportLayer: API;
   blogPosts: BlogPost[] = [];
   isLoading: boolean = true;
 
-  constructor(transportLayer: any, rootStore: RootStore) {
+  constructor(transportLayer: API, rootStore: RootStore) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
     this.transportLayer = transportLayer;

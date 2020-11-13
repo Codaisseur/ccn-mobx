@@ -42,7 +42,7 @@ export class BlogPost {
 
   // Remove this BlogPost from the client and the server.
   delete() {
-    this.store!.transportLayer.deleteBlogPost(this.id);
+    this.store!.transportLayer.deleteBlogPost(this.id!);
     this.store!.removeBlogPost(this);
   }
 
@@ -53,7 +53,7 @@ export class BlogPost {
       content: this.content,
       authorId: this.author ? this.author.id : null,
       // etc.
-    };
+    } as BlogPost;
   }
 
   // Update this BlogPost with information from the server.
